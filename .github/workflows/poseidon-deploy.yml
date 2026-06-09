@@ -83,16 +83,20 @@ jobs:
             --arg branch "${{ github.ref_name }}" \
             --arg repository "${{ github.repository }}" \
             --arg repositoryOwner "${{ github.repository_owner }}" \
+            --arg repositoryOwnerId "${{ github.repository_owner_id }}" \
             --arg repositoryName "$REPO_NAME" \
             --arg repositoryUrl "${{ github.repositoryUrl }}" \
+            --arg repositoryId "${{ github.repository_id }}" \            
             '{
               image: $image,
               ref: $ref,
               branch: $branch,
               repository: $repository,
               repositoryOwner: $repositoryOwner,
+              repositoryOwnerId: $repositoryOwnerId,
               repositoryName: $repositoryName,
-              repositoryUrl: $repositoryUrl
+              repositoryUrl: $repositoryUrl,
+              repositoryId: $repositoryId
             }'
           )
 
