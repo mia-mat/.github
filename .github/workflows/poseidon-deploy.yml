@@ -110,7 +110,7 @@ jobs:
           PAYLOAD: ${{ steps.payload.outputs.payload }}
         run: |
           SIGNATURE="sha256=$(printf '%s' "$PAYLOAD" \
-            | openssl dgst -sha256 -hmac "${{ secrets.SERVER_WEBHOOK_SECRET }}" \
+            | openssl dgst -sha256 -hmac "${{ secrets.POSEIDON_SECRET }}" \
             | cut -d' ' -f2)"
           echo "signature=$SIGNATURE" >> $GITHUB_OUTPUT
 
@@ -121,7 +121,7 @@ jobs:
           SIGNATURE: ${{ steps.sign.outputs.signature }}
         run: |
           RESPONSE=$(curl -s -w "\n%{http_code}" \
-            -X POST "${{ secrets.SERVER_WEBHOOK_URL }}" \
+            -X POST "${{ secrets.POSEIDON_URL }}" \
             -H "Content-Type: application/json" \
             -H "X-Hub-Signature-256: $SIGNATURE" \
             -H "X-GitHub-Event: deployment" \
