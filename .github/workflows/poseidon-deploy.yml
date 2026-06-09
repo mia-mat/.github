@@ -76,7 +76,7 @@ jobs:
         run: |
           REPO_NAME="${{ github.repository }}"
           REPO_NAME="${REPO_NAME#${{ github.repository_owner }}/}"
-
+      
           PAYLOAD=$(jq -n \
             --arg image "${{ needs.build.outputs.image-tag }}" \
             --arg ref "${{ github.ref }}" \
@@ -86,7 +86,7 @@ jobs:
             --arg repositoryOwnerId "${{ github.repository_owner_id }}" \
             --arg repositoryName "$REPO_NAME" \
             --arg repositoryUrl "${{ github.repositoryUrl }}" \
-            --arg repositoryId "${{ github.repository_id }}" \            
+            --arg repositoryId "${{ github.repository_id }}" \
             '{
               image: $image,
               ref: $ref,
